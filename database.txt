@@ -1,0 +1,3 @@
+username: sotheakam201
+password: Ykggg97JQVRiXic
+connetion string: mongodb+srv://sotheakam201:Ykggg97JQVRiXic@clusterprojectexpress.ht8vabg.mongodb.net/schoolDB
