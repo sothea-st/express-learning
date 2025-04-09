@@ -1,15 +1,21 @@
 const express = require('express');
-const app = express();
+const connectDB = require('./config/db');
 const routes = require('./routes');
 require('dotenv').config();
-const connectDB = require('./config/db');
 
-// Connect to MongoDB
+const app = express(); // express() Creates the main app server
+
+
 connectDB();
 
-app.use(express.json());
 
-// API routes
-app.use('/api', routes);
+app.use(express.json()); // Middleware to parse JSON request bodies
+
+// All API routes under `/api`
+app.use('/api', routes); // Handle GET requests to /
+
+
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // Start the server
 
 module.exports = app;
