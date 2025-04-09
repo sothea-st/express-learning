@@ -11,29 +11,35 @@ exports.getUser = async (req, res) => {
   res.json(user);
 };
 
-// exports.createUser = async (req, res) => {
-//   const newUser = await userService.createUser(req.body);
-//   res.status(201).json(newUser);
-// };
 
 exports.createUser = async (req, res) => {
   try {
     const newUser = await userService.createUser(req.body);
     res.status(201).json(newUser); // Send successful response with the new user data
   } catch (error) {
-    // Catch errors and send a response without crashing the server
-    console.error(error);  // Log the error for debugging purposes
-    res.status(400).json({ message: error.message }); // Send the error message to the client
+    // Check if the error is a Mongoose validation error
+    if (error.name === 'ValidationError') {
+      // Extract the first validation error message
+      const firstError = Object.values(error.errors)[0].message;
+      return res.status(400).json({ message: firstError });  // Send the custom error message
+    }
+
+    // Handle other types of errors
+    console.error(error);
+    res.status(400).json({ message: error.message });
   }
 };
 
 
 
 exports.updateUser = async (req, res) => {
-  const updatedUser = await userService.updateUser(req.params.id, req.body);
-  if (!updatedUser) return res.status(404).json({ message: 'User not found' });
-  res.json(updatedUser);
+  try {
+    res.json( await userService.updateUser(req.params.id, req.body));
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
+
 
 exports.deleteUser = async (req, res) => {
   const deletedUser = await userService.deleteUser(req.params.id);

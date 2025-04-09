@@ -9,11 +9,12 @@ const mongoose = require('mongoose');
 */
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: [true,'The field name is required !'] },
   email: { type: String, required: true, unique: true },
   age: { type: Number, required: true },
-  statue: { type: Boolean, default: true }
+  status: { type: Boolean, default: true }
 });
+
 
 
 /* - create  User model and return or export it 
