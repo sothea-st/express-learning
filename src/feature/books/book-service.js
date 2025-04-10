@@ -1,5 +1,5 @@
 
-const Book = require('./BookModel')
+const Book = require('./book-model')
 
 class BookService {
   create = async (bookData) => {
