@@ -8,7 +8,6 @@ const app = express(); // express() Creates the main app server
 
 connectDB();
 
-
 app.use(express.json()); // Middleware to parse JSON request bodies
 
 // All API routes under `/api`
