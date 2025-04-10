@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const User = require('../models/user_model');
-const CustomError = require('../utitls/custom_error');  // The custom error class
+const User = require('./UserModel');
+const CustomError = require('../../utitls/custom_error');  // The custom error class
 
 class UserService {
 

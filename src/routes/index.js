@@ -1,6 +1,7 @@
 const express = require("express")
-const router = express.Router(); // Creates a mini router (used in routes)
+const router = express.Router(); 
 
-router.use('/users', require('./user_routes'));
+router.use('/users', require('../feature/users/UserRoute'));
+router.use('/books',require('../feature/books/BookRoute'))
  
 module.exports = router;
