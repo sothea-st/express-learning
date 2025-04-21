@@ -14,7 +14,7 @@ app.use(express.json());
 connectDB(); // Call the MongoDB connection function
 
 // ✅ Apply middleware globally
-app.use(verifyJWT);
+// app.use(verifyJWT);
 
 // Register the routes
 app.use('/api',routes);  // Register all routes from routes/index.ts
